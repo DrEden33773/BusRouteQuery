@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="BusRouteQuery"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BusRouteQuery">
+				<Option output="/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/build/linux/x86_64/debug/BusRouteQuery" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/../../../../include/c++/13.0.0"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/../../../../include/c++/13.0.0/x86_64-linux-gnu"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/../../../../include/c++/13.0.0/backward"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/include-fixed/x86_64-linux-gnu"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 BusRouteQuery"/>
+					<CompileFile command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BusRouteQuery/fast">
+				<Option output="/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/build/linux/x86_64/debug/BusRouteQuery" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/../../../../include/c++/13.0.0"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/../../../../include/c++/13.0.0/x86_64-linux-gnu"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/../../../../include/c++/13.0.0/backward"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/include-fixed/x86_64-linux-gnu"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 BusRouteQuery/fast"/>
+					<CompileFile command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j20 -f &quot;/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/src/main.cpp">
+			<Option target="BusRouteQuery"/>
+		</Unit>
+		<Unit filename="/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

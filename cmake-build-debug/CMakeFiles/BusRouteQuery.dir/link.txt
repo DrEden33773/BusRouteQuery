@@ -1,0 +1,1 @@
+/usr/local/bin/g++ -g -m64 CMakeFiles/BusRouteQuery.dir/src/main.cpp.o -o ../build/linux/x86_64/debug/BusRouteQuery 
