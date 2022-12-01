@@ -37,9 +37,11 @@ class Initializer {
     using VL         = VertexList;
     using fs_path    = std::filesystem::path;
 
-    const fs_path& src_path = Utility::FileManager::Filename::SourceFile;
-    fs_path        old_src_path;
-    std::fstream   src_file;
+    const fs_path& src_path      = Utility::FileManager::Filename::SourceFile;
+    const fs_path& test_src_path = Utility::FileManager::Filename::TestSrcFile;
+
+    fs_path      old_src_path;
+    std::fstream src_file;
 
     /// @brief @b Parser
 private:
@@ -205,17 +207,30 @@ private:
 private:
     void make_test_src() {
         using std::string;
-
         string category_1 = "1路";
         string category_2 = "2路";
         string category_3 = "3路";
+        string route_1    = "A,B,C";
+        string route_2    = "B,D,E";
+        string route_3    = "D,E,F";
 
-        string route_1 = "A,B,C";
-        string route_2 = "B,D,E";
-        string route_3 = "D,E,F";
+        std::vector<std::pair<string, string>> info {
+            {"1路",  "A,B,C"},
+            { "2路", "B,D,E"},
+            { "3路", "D,E,F"},
+        };
+
+        src_file.open(test_src_path, std::fstream::out);
+        if (!src_file.is_open()) {
+            throw std::runtime_error("Cannot open Source File!");
+        }
+        for (auto&& [category, route] : info) {
+            src_file << category << " " << route << std::endl;
+        }
+        src_file.close();
     }
     void scan_test_src() {
-        src_file.open(src_path, std::fstream::in);
+        src_file.open(test_src_path, std::fstream::in);
         if (!src_file.is_open()) {
             throw std::runtime_error("Cannot open Source File!");
         }
@@ -244,6 +259,7 @@ public:
         std::cout << "Start to test the Initializer..." << std::endl;
         std::cout << std::endl;
 
+        Init_Process.make_test_src();
         Init_Process.scan_test_src();
 
         std::cout << "Test of the Initializer is end." << std::endl;
