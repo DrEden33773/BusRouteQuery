@@ -18,6 +18,7 @@
 namespace Test {
 
 void InitializerTest() {
+    Module::Initializer::Test();
 }
 
 } // namespace Test

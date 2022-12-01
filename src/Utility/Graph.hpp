@@ -40,6 +40,8 @@ template <typename T>
 class Prim;
 template <typename T>
 class DijkstraPlus;
+template <typename T>
+class MinTransfer;
 
 } // namespace Utility
 
@@ -53,6 +55,7 @@ class Graph {
     friend class Utility::Kruskal<T>;
     friend class Utility::Prim<T>;
     friend class Utility::DijkstraPlus<T>;
+    friend class Utility::MinTransfer<T>;
 
 public:
     using MatType    = std::vector<std::vector<int>>;

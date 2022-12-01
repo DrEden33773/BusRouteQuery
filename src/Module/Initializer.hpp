@@ -16,6 +16,7 @@
 #include "../Utility/FileManager.hpp"
 #include "../Utility/Graph.hpp"
 
+#include <algorithm>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -82,16 +83,11 @@ private:
                 all_vex_set.insert(vex);
                 // and join a category
                 std::string the_category = All_Category<std::string>->back();
-                Category_Vex_Map<
-                    std::string, std::string>
-                    ->insert(std::make_pair(
-                        the_category,
-                        curr_category_vex
-                    ));
+                (*Category_Vex_Map<
+                    std::string, std::string>)[the_category]
+                    = curr_category_vex;
                 // clear the vex
                 vex.clear();
-                // clear curr_category_vex
-                curr_category_vex.clear();
             }
         }
         // now, there must be a vex unjoined
@@ -99,15 +95,10 @@ private:
         all_vex_set.insert(vex);
         // get current category
         std::string the_category = All_Category<std::string>->back();
-        // join the last vex into category
-        Category_Vex_Map<
-            std::string, std::string>
-            ->insert(std::make_pair(
-                the_category,
-                curr_category_vex
-            ));
+        (*Category_Vex_Map<
+            std::string, std::string>)[the_category]
+            = curr_category_vex;
         vex.clear();
-        curr_category_vex.clear();
         // category_vex is ready
 
         // now deal with edge
@@ -120,14 +111,9 @@ private:
         }
 
         // now join all the edges into `category_edge_map`
-        Category_WEdge_Map<
-            std::string, std::string>
-            ->insert(
-                std::make_pair(
-                    the_category,
-                    *All_WeightedEdge<std::string>
-                )
-            );
+        (*Category_WEdge_Map<
+            std::string, std::string>)[the_category]
+            = *All_WeightedEdge<std::string>;
     }
     void parser() {
         using Resource::All_Category;
@@ -207,17 +193,14 @@ private:
 private:
     void make_test_src() {
         using std::string;
-        string category_1 = "1路";
-        string category_2 = "2路";
-        string category_3 = "3路";
-        string route_1    = "A,B,C";
-        string route_2    = "B,D,E";
-        string route_3    = "D,E,F";
 
         std::vector<std::pair<string, string>> info {
             {"1路",  "A,B,C"},
             { "2路", "B,D,E"},
             { "3路", "D,E,F"},
+            { "4路", "G,E,F"},
+            { "5路", "F,E,H"},
+            { "6路", "I,E,M"},
         };
 
         src_file.open(test_src_path, std::fstream::out);
@@ -225,7 +208,7 @@ private:
             throw std::runtime_error("Cannot open Source File!");
         }
         for (auto&& [category, route] : info) {
-            src_file << category << " " << route << std::endl;
+            src_file << category << "   " << route << std::endl;
         }
         src_file.close();
     }
@@ -237,9 +220,44 @@ private:
         parser();
         src_file.close();
     }
+    void show_test_info() {
+        using Resource::All_Category;
+        using Resource::All_Vex;
+        using Resource::All_WeightedEdge;
+        using Resource::Category_Vex_Map;
+        using Resource::Category_WEdge_Map;
+
+        std::cout << "Here's what we received : " << std::endl;
+        std::cout << std::endl;
+
+        // 1. categories
+        std::cout << "All categories : " << std::endl;
+        std::cout << std::endl;
+        for (auto&& category : *All_Category<std::string>) {
+            std::cout << category << " ";
+        }
+        std::cout << std::endl;
+        std::cout << std::endl;
+
+        // 2. category_vex_map
+        std::cout << "Vex with different category : " << std::endl;
+        std::cout << std::endl;
+        for (auto&& pair : *Category_Vex_Map<std::string, std::string>) {
+            auto&& category = pair.first;
+            auto&& vexes    = pair.second;
+            std::cout << category << " => ";
+            for (auto&& vex : vexes) {
+                std::cout << vex << " ";
+            }
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
+    }
 
 public:
     static void Init() {
+        Utility::FileManager::path_init();
+
         Initializer Init_Process;
 
         std::cout << "Initializer is working..." << std::endl;
@@ -254,6 +272,8 @@ public:
     }
 
     static void Test() {
+        Utility::FileManager::path_init();
+
         Initializer Init_Process;
 
         std::cout << "Start to test the Initializer..." << std::endl;
@@ -261,6 +281,7 @@ public:
 
         Init_Process.make_test_src();
         Init_Process.scan_test_src();
+        Init_Process.show_test_info();
 
         std::cout << "Test of the Initializer is end." << std::endl;
         std::cout << std::endl;

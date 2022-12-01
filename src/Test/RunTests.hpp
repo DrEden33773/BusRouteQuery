@@ -12,6 +12,7 @@
 #pragma once
 
 #include "ChineseCharTest.hpp"
+#include "InitializerTest.hpp"
 #include "PtrObjAllocMemTest.hpp"
 #include "StaticMemberTest.hpp"
 #include "WeakPtrTest.hpp"
@@ -27,6 +28,7 @@ static const std::vector<std::function<void()>> AllTest {
     StaticMemberTest,
     // ChineseCharTest,
     PtrObjAllocMemTest,
+    InitializerTest,
 };
 
 void RunTests() {

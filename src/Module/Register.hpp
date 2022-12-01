@@ -61,6 +61,7 @@ public:
     static void Registry() {
         Register Registry_Process;
         Registry_Process.register_Graph();
+        Registry_Process.register_Dijkstra();
     }
 };
 
