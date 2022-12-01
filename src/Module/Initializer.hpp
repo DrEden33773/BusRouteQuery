@@ -202,6 +202,27 @@ private:
         src_file.close();
     }
 
+private:
+    void make_test_src() {
+        using std::string;
+
+        string category_1 = "1路";
+        string category_2 = "2路";
+        string category_3 = "3路";
+
+        string route_1 = "A,B,C";
+        string route_2 = "B,D,E";
+        string route_3 = "D,E,F";
+    }
+    void scan_test_src() {
+        src_file.open(src_path, std::fstream::in);
+        if (!src_file.is_open()) {
+            throw std::runtime_error("Cannot open Source File!");
+        }
+        parser();
+        src_file.close();
+    }
+
 public:
     static void Init() {
         Initializer Init_Process;
@@ -214,6 +235,18 @@ public:
         Init_Process.scan_src();
 
         std::cout << "SourceFile is scanned, Vertex/EdgeWithWeight/Category Initialized!" << std::endl;
+        std::cout << std::endl;
+    }
+
+    static void Test() {
+        Initializer Init_Process;
+
+        std::cout << "Start to test the Initializer..." << std::endl;
+        std::cout << std::endl;
+
+        Init_Process.scan_test_src();
+
+        std::cout << "Test of the Initializer is end." << std::endl;
         std::cout << std::endl;
     }
 };

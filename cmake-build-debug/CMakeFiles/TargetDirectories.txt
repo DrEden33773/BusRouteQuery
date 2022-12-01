@@ -1,3 +1,0 @@
-/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/CMakeFiles/BusRouteQuery.dir
-/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/eden/CollegeLearningRepo/DS_CurriculumDesign/BusRouteQuery/cmake-build-debug/CMakeFiles/rebuild_cache.dir
