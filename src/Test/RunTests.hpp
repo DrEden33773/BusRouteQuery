@@ -14,7 +14,6 @@
 #include "ChineseCharTest.hpp"
 #include "PtrObjAllocMemTest.hpp"
 #include "StaticMemberTest.hpp"
-#include "StrFile_NonBinary_IO_Test.hpp"
 #include "WeakPtrTest.hpp"
 
 #include <functional>
@@ -27,7 +26,6 @@ static const std::vector<std::function<void()>> AllTest {
     // WeakPtrTest,
     StaticMemberTest,
     // ChineseCharTest,
-    StrFile_NonBinary_IO_Test,
     PtrObjAllocMemTest,
 };
 

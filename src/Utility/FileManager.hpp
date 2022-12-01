@@ -32,8 +32,6 @@ namespace Filename {
     static const fs::path SourceFile = Path::Root / "source.txt";
     /* test_src.txt */
     static const fs::path TestSrcFile = Path::TestRoot / "test_source.txt";
-    /* test_binary_code.dat */
-    static const fs::path TestBinaryDataFile = Path::TestRoot / "test_binary_data.dat";
 } // namespace Filename
 
 /* all_path in a vec */
