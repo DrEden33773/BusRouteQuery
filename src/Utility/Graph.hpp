@@ -423,7 +423,7 @@ public:
                 const int& curr_idx = queue.front();
                 // 2. output current_vertex
                 std::cout << Index_V_Map[curr_idx] << " ";
-                // 4. put `all unvisited adj_idx` into the queue
+                // 3. put `all unvisited adj_idx` into the queue
                 std::vector<int>&& adj_idx_list
                     = FindAllAdjIndex(Index_V_Map.at(curr_idx));
                 for (const int& adj_idx : adj_idx_list) {
@@ -433,7 +433,7 @@ public:
                         visited_idx.insert(adj_idx);
                     }
                 }
-                // 5. remove curr_idx from queue
+                // 4. remove curr_idx from queue
                 queue.pop();
             }
         }

@@ -18,6 +18,7 @@
 #include <stdexcept>
 #include <tuple>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 namespace Resource {
@@ -51,11 +52,14 @@ using WEL = WEdgeList<T>; // WE = WeightedEdge
 template <typename T>
 using CL = CategoryList<T>;
 
+template <typename T>
+using VS = std::unordered_set<T>;
+
 template <typename K, typename V>
 using CVMap = std::unordered_map<K, VL<V>>;
 
 template <typename K, typename V>
-using CWEMap = std::unordered_map<K, WEL<V>>; // WE = WeightedEdge
+using C_VS_Map = std::unordered_map<K, VS<V>>;
 
 /**
  * @brief @b InitializerPool // inline namespace
@@ -80,7 +84,7 @@ inline namespace InitializerPool {
 
     template <typename K, typename V>
     requires Utility::StdOut<K> and Utility::StdOut<V>
-    static const std::shared_ptr<CWEMap<K, V>> Category_WEdge_Map = std::make_shared<CWEMap<K, V>>();
+    static const std::shared_ptr<C_VS_Map<K, V>> Category_VexSet_Map = std::make_shared<C_VS_Map<K, V>>();
 
 } // namespace InitializerPool
 

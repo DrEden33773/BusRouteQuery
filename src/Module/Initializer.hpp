@@ -69,10 +69,11 @@ private:
         using Resource::All_Vex;
         using Resource::All_WeightedEdge;
         using Resource::Category_Vex_Map;
-        using Resource::Category_WEdge_Map;
+        using Resource::Category_VexSet_Map;
 
-        std::string              vex;
-        std::vector<std::string> curr_category_vex;
+        std::string                     vex;
+        std::vector<std::string>        curr_category_vex;
+        std::unordered_set<std::string> curr_category_vexSet;
         for (const char& curr : receiver) {
             if (!splitter.contains(curr)) {
                 // still don't get a vex
@@ -80,24 +81,32 @@ private:
             } else {
                 // get a vex, push it
                 curr_category_vex.push_back(vex);
+                curr_category_vexSet.insert(vex);
                 all_vex_set.insert(vex);
                 // and join a category
                 std::string the_category = All_Category<std::string>->back();
                 (*Category_Vex_Map<
                     std::string, std::string>)[the_category]
                     = curr_category_vex;
+                (*Category_VexSet_Map<
+                    std::string, std::string>)[the_category]
+                    = curr_category_vexSet;
                 // clear the vex
                 vex.clear();
             }
         }
         // now, there must be a vex unjoined
         curr_category_vex.push_back(vex);
+        curr_category_vexSet.insert(vex);
         all_vex_set.insert(vex);
         // get current category
         std::string the_category = All_Category<std::string>->back();
         (*Category_Vex_Map<
             std::string, std::string>)[the_category]
             = curr_category_vex;
+        (*Category_VexSet_Map<
+            std::string, std::string>)[the_category]
+            = curr_category_vexSet;
         vex.clear();
         // category_vex is ready
 
@@ -109,11 +118,6 @@ private:
                 std::make_tuple(from_vex, to_vex, 1)
             );
         }
-
-        // now join all the edges into `category_edge_map`
-        (*Category_WEdge_Map<
-            std::string, std::string>)[the_category]
-            = *All_WeightedEdge<std::string>;
     }
     void parser() {
         using Resource::All_Category;
@@ -225,7 +229,6 @@ private:
         using Resource::All_Vex;
         using Resource::All_WeightedEdge;
         using Resource::Category_Vex_Map;
-        using Resource::Category_WEdge_Map;
 
         std::cout << "Here's what we received : " << std::endl;
         std::cout << std::endl;
