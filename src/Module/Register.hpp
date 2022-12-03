@@ -56,12 +56,24 @@ class Register {
         std::cout << std::endl
                   << std::endl;
     }
+    void register_MinTransfer() {
+        std::cout << "Start to register `MinTransfer Algorithm`...";
+        std::cout << std::endl
+                  << std::endl;
+        Resource::AlgorithmPool<std::string>::RegisterMinTransfer(
+            *Resource::GraphPool<std::string>::get()
+        );
+        std::cout << "Successfully registered `MinTransfer Algorithm`!";
+        std::cout << std::endl
+                  << std::endl;
+    }
 
 public:
     static void Registry() {
         Register Registry_Process;
         Registry_Process.register_Graph();
         Registry_Process.register_Dijkstra();
+        Registry_Process.register_MinTransfer();
     }
 };
 

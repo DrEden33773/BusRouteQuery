@@ -315,7 +315,7 @@ public:
         std::cout << std::endl;
     }
 
-private:
+public:
     void execute_algorithm_from(const T& source_vex) {
         Data->make_sure_has_vex(source_vex);
         int source = Data->V_Index_Map[source_vex];
