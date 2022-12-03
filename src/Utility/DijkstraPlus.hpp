@@ -269,8 +269,6 @@ public:
             // could update path
             build_min_route_of(source);
         }
-        // build_sp_route
-        build_sp_route_list();
     }
     void show_all_min_dist() {
         for (int source = 0; source < size; ++source) {
@@ -315,6 +313,58 @@ public:
         std::cout << "Number of Special Routes: " << SpRouteList.size();
         std::cout << std::endl;
         std::cout << std::endl;
+    }
+
+private:
+    void execute_algorithm_from(const T& source_vex) {
+        Data->make_sure_has_vex(source_vex);
+        int source = Data->V_Index_Map[source_vex];
+
+        /* ---*--- start of single source Dijkstra ---*--- */
+
+        int unjoined_num = Data->size;
+        while (unjoined_num > 0) {
+            // 1) find closest of `passed-->source`
+            int passed = find_closest_unjoined_idx(source);
+            // 2) set visited
+            Flag[source][passed] = 1;
+            int source_to_passed = Dist[source][passed];
+            if (source_to_passed == Data->LIM) {
+                continue;
+            }
+            // 3) update all other dist
+            for (int curr = 0; curr < Data->size; ++curr) {
+                int source_to_curr = Dist[source][curr];
+                int passed_to_curr = Data->Mat[passed][curr];
+                // source->passed->curr < source-->curr
+                bool if_unvisited = Flag[source][curr] == 0;
+                bool if_closer    = if_closer_judger(
+                    source_to_passed, /* a */
+                    passed_to_curr,   /* b */
+                    source_to_curr    /* c */
+                    /* Judge => a + b < c (consider LIM)*/
+                );
+                if (if_unvisited && if_closer) {
+                    // need to update
+                    Dist[source][curr] = source_to_passed + passed_to_curr;
+                    Adj[source][curr]  = passed;
+                }
+            }
+            // 4) update tag
+            --unjoined_num;
+        }
+        // could update path
+        build_min_route_of(source);
+
+        /* ---*--- end of single source Dijkstra ---*--- */
+    }
+    void show_min_dist_between(const T& source, const T& end) {
+    }
+    void show_min_route_between(const T& source, const T& end) {
+    }
+
+private:
+    void query() {
     }
 };
 
