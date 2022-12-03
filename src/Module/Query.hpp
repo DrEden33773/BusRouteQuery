@@ -55,8 +55,8 @@ class Querier {
         AlgorithmPool<std::string>::getDijkstra()
             ->query(source, end); // SUCCESS!
 
-        /* AlgorithmPool<std::string>::getMinTransfer()
-            ->query(source, end); // TOO SLOW! */
+        AlgorithmPool<std::string>::getMinTransfer()
+            ->query(source, end); // TOO SLOW!
     }
 
 public:

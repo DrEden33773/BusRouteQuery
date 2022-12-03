@@ -493,6 +493,12 @@ public:
         }
         std::cout << std::endl;
     }
+
+public:
+    [[nodiscard]] int get_index_of(const T& input) const {
+        make_sure_has_vex(input);
+        return V_Index_Map[input];
+    }
 };
 
 } // namespace Utility
