@@ -359,17 +359,20 @@ public:
         /* ---*--- end of single source Dijkstra ---*--- */
     }
     void show_min_dist_between(const T& source, const T& end) {
-        std::cout << "{ " << source << " -> " << end << " } min distance is : ";
-        std::cout << Dist[source][end];
+        std::cout << "{ " << source << " -> " << end << " } min distance is => ";
+        int source_idx = Data->V_Index_Map[source];
+        int end_idx    = Data->V_Index_Map[end];
+        std::cout << Dist[source_idx][end_idx];
         std::cout << std::endl;
         std::cout << std::endl;
     }
     void show_min_route_between(const T& source, const T& end) {
-        std::cout << "{ " << source << " -> " << end << " } shortest route is :";
-        std::cout << std::endl;
-        std::cout << std::endl;
+        std::cout << "{ " << source << " -> " << end << " } shortest route is => ";
 
-        auto src_ed_pair = std::make_pair(source, end);
+        int source_idx = Data->V_Index_Map[source];
+        int end_idx    = Data->V_Index_Map[end];
+
+        auto src_ed_pair = std::make_pair(source_idx, end_idx);
         for (auto&& curr : AllMinRoute[src_ed_pair]) {
             std::cout << curr << " ";
         }
@@ -377,7 +380,7 @@ public:
         std::cout << std::endl;
     }
 
-private:
+public:
     void query(const T& source, const T& end) {
         execute_algorithm_from(source);
         show_min_dist_between(source, end);

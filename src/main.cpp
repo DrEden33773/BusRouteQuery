@@ -16,5 +16,6 @@
 #include "Test/RunTests.hpp"
 
 int main(int argc, char** argv) {
-    Test::RunTests();
+    // Test::RunTests();
+    TaskManager::RunAllTasks();
 }

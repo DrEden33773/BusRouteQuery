@@ -14,6 +14,8 @@
 #include "Module/Query.hpp"
 #include "Module/Register.hpp"
 
+namespace TaskManager {
+
 void RunAllTasks() {
     // using Module::PreExecuter;
     using Module::Initializer;
@@ -24,3 +26,5 @@ void RunAllTasks() {
     Register::Registry();
     Querier::Query();
 }
+
+} // namespace TaskManager

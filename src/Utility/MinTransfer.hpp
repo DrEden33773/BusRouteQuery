@@ -85,7 +85,12 @@ class MinTransfer {
 
 private:
     void show_result() {
-        // TODO(eden):
+        std::cout << "{ " << source << " -> " << end << " } min transfer_time route is => ";
+        for (auto&& curr : best_route.front().route) {
+            std::cout << curr << " ";
+        }
+        std::cout << std::endl;
+        std::cout << std::endl;
     }
     void find_min_transfer() {
         // 0. special case
