@@ -1,5 +1,5 @@
 /**
- * @file Executer.hpp
+ * @file PreExecuter.hpp
  * @author Eden (edwardwang33773@gmail.com)
  * @brief
  * @version 0.1
@@ -23,7 +23,7 @@
 
 namespace Module {
 
-class Executer {
+class PreExecuter {
     using fs_path = std::filesystem::path;
 
     void execute_Floyd() {
@@ -45,7 +45,7 @@ class Executer {
 
 public:
     static void Exec() {
-        Executer Exec_Process;
+        PreExecuter Exec_Process;
         Exec_Process.execute_Dijkstra();
     }
 };

@@ -359,12 +359,29 @@ private:
         /* ---*--- end of single source Dijkstra ---*--- */
     }
     void show_min_dist_between(const T& source, const T& end) {
+        std::cout << "{ " << source << " -> " << end << " } min distance is : ";
+        std::cout << Dist[source][end];
+        std::cout << std::endl;
+        std::cout << std::endl;
     }
     void show_min_route_between(const T& source, const T& end) {
+        std::cout << "{ " << source << " -> " << end << " } shortest route is :";
+        std::cout << std::endl;
+        std::cout << std::endl;
+
+        auto src_ed_pair = std::make_pair(source, end);
+        for (auto&& curr : AllMinRoute[src_ed_pair]) {
+            std::cout << curr << " ";
+        }
+        std::cout << std::endl;
+        std::cout << std::endl;
     }
 
 private:
-    void query() {
+    void query(const T& source, const T& end) {
+        execute_algorithm_from(source);
+        show_min_dist_between(source, end);
+        show_min_route_between(source, end);
     }
 };
 
