@@ -28,10 +28,14 @@ class GraphPool {
     using WEL        = WEdgeList;
     using VL         = VertexList;
 
-    static std::shared_ptr<Graph> TheGraph;
+    static std::shared_ptr<Graph> OriginalGraph;
+    static std::shared_ptr<Graph> TransferGraph;
 
-    static void UnregisteredException() {
-        throw std::runtime_error("You've not registered a Graph!");
+    static void Unregistered_Original_Exception() {
+        throw std::runtime_error("You've not registered Original_Graph!");
+    }
+    static void Unregistered_Transfer_Exception() {
+        throw std::runtime_error("You've not registered Transfer_Specialized_Graph!");
     }
 
 public:
@@ -39,38 +43,66 @@ public:
     GraphPool() = delete;
 
     /// @brief @b Register
-    static void Register(
+    static void RegisterOriginal(
         const VL&   vl,
         const WEL&  wel,
         const bool& directed = false
     ) {
-        if (TheGraph) {
-            TheGraph.reset();
+        if (OriginalGraph) {
+            OriginalGraph.reset();
         }
-        TheGraph = std::make_shared<Graph>(vl, wel, directed);
+        OriginalGraph = std::make_shared<Graph>(vl, wel, directed);
+    }
+    static void RegisterTransfer(
+        const VL&   vl,
+        const WEL&  wel,
+        const bool& directed = false
+    ) {
+        if (TransferGraph) {
+            TransferGraph.reset();
+        }
+        TransferGraph = std::make_shared<Graph>(vl, wel, directed);
     }
 
     /// @brief @b get
-    static std::shared_ptr<Graph> get() {
-        if (!TheGraph) {
-            UnregisteredException();
+    static std::shared_ptr<Graph> getOriginal() {
+        if (!OriginalGraph) {
+            Unregistered_Original_Exception();
         }
-        return TheGraph;
+        return OriginalGraph;
+    }
+    static std::shared_ptr<Graph> getTransfer() {
+        if (!TransferGraph) {
+            Unregistered_Transfer_Exception();
+        }
+        return TransferGraph;
     }
 
     /// @brief @b set
-    static void set(
+    static void setOriginal(
         const VL&   vl,
         const WEL&  el,
         const bool& directed = false
     ) {
-        TheGraph.reset();
-        TheGraph = std::make_shared<Graph>(vl, el, directed);
+        OriginalGraph.reset();
+        OriginalGraph = std::make_shared<Graph>(vl, el, directed);
+    }
+    static void setTransfer(
+        const VL&   vl,
+        const WEL&  el,
+        const bool& directed = false
+    ) {
+        TransferGraph.reset();
+        TransferGraph = std::make_shared<Graph>(vl, el, directed);
     }
 };
 
 template <typename T>
 requires Utility::StdOut<T>
-std::shared_ptr<Utility::Graph<T>> GraphPool<T>::TheGraph = nullptr;
+std::shared_ptr<Utility::Graph<T>> GraphPool<T>::OriginalGraph = nullptr;
+
+template <typename T>
+requires Utility::StdOut<T>
+std::shared_ptr<Utility::Graph<T>> GraphPool<T>::TransferGraph = nullptr;
 
 } // namespace Resource

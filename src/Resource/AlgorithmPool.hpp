@@ -14,7 +14,7 @@
 #include "../Utility/ConceptLib.hpp"
 #include "../Utility/Dijkstra.hpp"
 #include "../Utility/Graph.hpp"
-#include "../Utility/MinTransfer.hpp"
+#include "../Utility/MinTransferNew.hpp"
 
 #include <memory>
 #include <stdexcept>

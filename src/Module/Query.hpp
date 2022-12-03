@@ -37,8 +37,8 @@ class Querier {
             std::cout << ">>> ";
             std::cin >> source >> end;
             std::cout << std::endl;
-            if (GraphPool<string>::get()->if_has_vex(source)
-                && GraphPool<string>::get()->if_has_vex(end)) {
+            if (GraphPool<string>::getOriginal()->if_has_vex(source)
+                && GraphPool<string>::getOriginal()->if_has_vex(end)) {
                 break;
             } else {
                 std::cout << "You've input at least one invalid station! Try again...";

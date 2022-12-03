@@ -27,11 +27,20 @@
 namespace Utility {
 
 template <typename T>
+class MinTransfer;
+
+} // namespace Utility
+
+namespace Utility {
+
+template <typename T>
 class Dijkstra {
-    Utility::Graph<T>* Data       = nullptr;
-    int                size       = 0;
-    int                source_idx = 0;
-    T                  source {};
+    friend class MinTransfer<T>;
+
+    Graph<T>* Data       = nullptr;
+    int       size       = 0;
+    int       source_idx = 0;
+    T         source {};
 
     std::vector<int> Dist; // min_dist of curr(index)-->source
     std::vector<int> Flag; // flag ( 0 or 1 )

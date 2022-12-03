@@ -27,11 +27,11 @@ class Register {
     using Floyd   = Utility::Floyd<std::string>;
     using fs_path = std::filesystem::path;
 
-    void register_Graph() {
+    void register_OriginalGraph() {
         std::cout << "Now, register `graph` with `vertex_list` and `weighted_edge_list`...";
         std::cout << std::endl
                   << std::endl;
-        Resource::GraphPool<std::string>::Register(
+        Resource::GraphPool<std::string>::RegisterOriginal(
             *Resource::InitializerPool::All_Vex<std::string>,
             *Resource::InitializerPool::All_WeightedEdge<std::string>,
             false
@@ -40,17 +40,12 @@ class Register {
         std::cout << std::endl
                   << std::endl;
     }
-    void register_Floyd() {
-        std::cout << "Floyd Algorithm has been discarded, request has been ignored...";
-        std::cout << std::endl
-                  << std::endl;
-    }
     void register_Dijkstra() {
         std::cout << "Start to register `Dijkstra Algorithm`...";
         std::cout << std::endl
                   << std::endl;
         Resource::AlgorithmPool<std::string>::RegisterDijkstra(
-            *Resource::GraphPool<std::string>::get()
+            *Resource::GraphPool<std::string>::getOriginal()
         );
         std::cout << "Successfully registered `Dijkstra Algorithm`!";
         std::cout << std::endl
@@ -61,19 +56,22 @@ class Register {
         std::cout << std::endl
                   << std::endl;
         Resource::AlgorithmPool<std::string>::RegisterMinTransfer(
-            *Resource::GraphPool<std::string>::get()
+            *Resource::GraphPool<std::string>::getTransfer()
         );
         std::cout << "Successfully registered `MinTransfer Algorithm`!";
         std::cout << std::endl
                   << std::endl;
     }
 
+    /// @b core
+    void register_TransferGraph() {
+    }
+
 public:
     static void Registry() {
         Register Registry_Process;
-        Registry_Process.register_Graph();
+        Registry_Process.register_OriginalGraph();
         Registry_Process.register_Dijkstra();
-        Registry_Process.register_MinTransfer();
     }
 };
 

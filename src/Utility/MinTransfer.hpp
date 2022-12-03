@@ -9,6 +9,12 @@
  *
  */
 
+/**
+ * @warning @b TOO_SLOW!
+ * @attention @b Discarded!
+ *
+ */
+
 #pragma once
 
 #include "../Resource/InitializerPool.hpp"
