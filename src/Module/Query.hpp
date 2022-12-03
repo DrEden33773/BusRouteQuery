@@ -49,7 +49,7 @@ class Querier {
             }
         }
     }
-    void do_query() {
+    void query() {
         using Resource::AlgorithmPool;
 
         AlgorithmPool<std::string>::getDijkstra()
@@ -60,10 +60,10 @@ class Querier {
     }
 
 public:
-    static void query() {
+    static void Query() {
         Querier query_process;
         query_process.input();
-        query_process.do_query();
+        query_process.query();
     }
 };
 

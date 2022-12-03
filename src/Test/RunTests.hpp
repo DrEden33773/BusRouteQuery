@@ -25,9 +25,9 @@ namespace Test {
 
 static const std::vector<std::function<void()>> AllTest {
     // WeakPtrTest,
-    StaticMemberTest,
+    // StaticMemberTest,
     // ChineseCharTest,
-    PtrObjAllocMemTest,
+    // PtrObjAllocMemTest,
     InitializerTest,
 };
 

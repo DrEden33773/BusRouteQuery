@@ -115,4 +115,16 @@ public:
     }
 };
 
+template <typename T>
+requires Utility::StdOut<T>
+std::shared_ptr<Utility::Floyd<T>> AlgorithmPool<T>::Floyd_Algorithm = nullptr;
+
+template <typename T>
+requires Utility::StdOut<T>
+std::shared_ptr<Utility::DijkstraPlus<T>> AlgorithmPool<T>::DijkstraPlus_Algorithm = nullptr;
+
+template <typename T>
+requires Utility::StdOut<T>
+std::shared_ptr<Utility::MinTransfer<T>> AlgorithmPool<T>::MinTransfer_Algorithm = nullptr;
+
 } // namespace Resource
