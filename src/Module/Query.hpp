@@ -53,10 +53,10 @@ class Querier {
         using Resource::AlgorithmPool;
 
         AlgorithmPool<std::string>::getDijkstra()
-            ->query(source, end); // SUCCESS
+            ->query(source, end); // SUCCESS!
 
-        AlgorithmPool<std::string>::getMinTransfer()
-            ->query(source, end); // BUG
+        /* AlgorithmPool<std::string>::getMinTransfer()
+            ->query(source, end); // TOO SLOW! */
     }
 
 public:

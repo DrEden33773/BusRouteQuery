@@ -355,7 +355,6 @@ public:
             }
             if (if_adj) {
                 res.push_back(col_idx);
-                break;
             }
         }
         return res;

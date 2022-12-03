@@ -9,6 +9,12 @@
  *
  */
 
+/**
+ * @warning @b cost_too_many_mem
+ * @attention @b discarded!
+ *
+ */
+
 #pragma once
 
 #include "Graph.hpp"

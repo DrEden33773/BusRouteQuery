@@ -12,8 +12,7 @@
 #pragma once
 
 #include "../Utility/ConceptLib.hpp"
-#include "../Utility/DijkstraPlus.hpp"
-#include "../Utility/Floyd.hpp"
+#include "../Utility/Dijkstra.hpp"
 #include "../Utility/Graph.hpp"
 #include "../Utility/MinTransfer.hpp"
 
@@ -25,18 +24,13 @@ namespace Resource {
 template <typename T>
 requires Utility::StdOut<T>
 class AlgorithmPool {
-    using Graph        = Utility::Graph<T>;
-    using Floyd        = Utility::Floyd<T>;
-    using DijkstraPlus = Utility::DijkstraPlus<T>;
-    using MinTransfer  = Utility::MinTransfer<T>;
+    using Graph       = Utility::Graph<T>;
+    using Dijkstra    = Utility::Dijkstra<T>;
+    using MinTransfer = Utility::MinTransfer<T>;
 
-    static std::shared_ptr<Floyd>        Floyd_Algorithm;
-    static std::shared_ptr<DijkstraPlus> DijkstraPlus_Algorithm;
-    static std::shared_ptr<MinTransfer>  MinTransfer_Algorithm;
+    static std::shared_ptr<Dijkstra>    Dijkstra_Algorithm;
+    static std::shared_ptr<MinTransfer> MinTransfer_Algorithm;
 
-    static void UnregisteredFloydException() {
-        throw std::runtime_error("You've not registered a Floyd Algorithm!");
-    }
     static void UnregisteredDijkstra() {
         throw std::runtime_error("You've not registered a Dijkstra Algorithm!");
     }
@@ -53,17 +47,12 @@ public:
      *
      * @param graph
      */
-    static void RegisterFloyd(Graph& graph) {
-        if (Floyd_Algorithm) {
-            Floyd_Algorithm.reset();
-        }
-        Floyd_Algorithm = std::make_shared<Floyd>(graph);
-    }
     static void RegisterDijkstra(Graph& graph) {
-        if (DijkstraPlus_Algorithm) {
-            DijkstraPlus_Algorithm.reset();
+        if (Dijkstra_Algorithm) {
+            Dijkstra_Algorithm.reset();
         }
-        DijkstraPlus_Algorithm = std::make_shared<DijkstraPlus>(graph);
+        // DijkstraPlus_Algorithm = std::make_shared<DijkstraPlus>(graph);
+        Dijkstra_Algorithm = std::make_shared<Dijkstra>(graph);
     }
     static void RegisterMinTransfer(Graph& graph) {
         if (MinTransfer_Algorithm) {
@@ -77,17 +66,11 @@ public:
      *
      * @return auto
      */
-    static auto getFloyd() {
-        if (!Floyd_Algorithm) {
-            UnregisteredFloydException();
-        }
-        return Floyd_Algorithm;
-    }
     static auto getDijkstra() {
-        if (!DijkstraPlus_Algorithm) {
+        if (!Dijkstra_Algorithm) {
             UnregisteredDijkstra();
         }
-        return DijkstraPlus_Algorithm;
+        return Dijkstra_Algorithm;
     }
     static auto getMinTransfer() {
         if (!MinTransfer_Algorithm) {
@@ -101,13 +84,9 @@ public:
      *
      * @param graph
      */
-    static void setFloyd(Graph& graph) {
-        Floyd_Algorithm.reset();
-        Floyd_Algorithm = std::make_shared<Floyd>(graph);
-    }
     static void setDijkstra(Graph& graph) {
-        DijkstraPlus_Algorithm.reset();
-        DijkstraPlus_Algorithm = std::make_shared<DijkstraPlus>(graph);
+        Dijkstra_Algorithm.reset();
+        Dijkstra_Algorithm = std::make_shared<Dijkstra>(graph);
     }
     static void setMinTransfer(Graph& graph) {
         MinTransfer_Algorithm.reset();
@@ -117,11 +96,7 @@ public:
 
 template <typename T>
 requires Utility::StdOut<T>
-std::shared_ptr<Utility::Floyd<T>> AlgorithmPool<T>::Floyd_Algorithm = nullptr;
-
-template <typename T>
-requires Utility::StdOut<T>
-std::shared_ptr<Utility::DijkstraPlus<T>> AlgorithmPool<T>::DijkstraPlus_Algorithm = nullptr;
+std::shared_ptr<Utility::Dijkstra<T>> AlgorithmPool<T>::Dijkstra_Algorithm = nullptr;
 
 template <typename T>
 requires Utility::StdOut<T>

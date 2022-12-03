@@ -46,13 +46,13 @@ class Register {
                   << std::endl;
     }
     void register_Dijkstra() {
-        std::cout << "Start to register `Dijkstra Algorithm Plus`...";
+        std::cout << "Start to register `Dijkstra Algorithm`...";
         std::cout << std::endl
                   << std::endl;
         Resource::AlgorithmPool<std::string>::RegisterDijkstra(
             *Resource::GraphPool<std::string>::get()
         );
-        std::cout << "Successfully registered `Dijkstra Algorithm Plus`!";
+        std::cout << "Successfully registered `Dijkstra Algorithm`!";
         std::cout << std::endl
                   << std::endl;
     }
