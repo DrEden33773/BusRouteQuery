@@ -39,7 +39,7 @@ private:
         for (auto&& [_, vexes] : *Category_Vex_Map<string, string>) {
             size_t size = vexes.size();
             for (size_t from = 0; from < size; ++from) {
-                for (size_t to = from + 1; to < size; ++to) {
+                for (size_t to = from; to < size; ++to) {
                     const string& from_vex = vexes[from];
                     const string& to_vex   = vexes[to];
                     // insert arc on a undirected graph
