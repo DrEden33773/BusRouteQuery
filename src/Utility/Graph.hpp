@@ -106,8 +106,8 @@ private:
 
 public:
     ~Graph() {
-        std::cout << "Graph has been destructed!" << std::endl;
-        std::cout << std::endl;
+        // std::cout << "Graph has been destructed!" << std::endl;
+        // std::cout << std::endl;
     }
     Graph(const Graph& copied) {
         copy_from(copied);
