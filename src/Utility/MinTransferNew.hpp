@@ -11,12 +11,14 @@
 
 #pragma once
 
+#include "../Resource/GraphPool.hpp"
 #include "../Resource/InitializerPool.hpp"
 #include "Dijkstra.hpp"
 #include "Graph.hpp"
 
 #include <algorithm>
 #include <iostream>
+#include <iterator>
 #include <list>
 #include <memory>
 #include <queue>
@@ -34,44 +36,6 @@ class MinTransfer {
     std::unique_ptr<Dijkstra<T>> DijkstraAlgo = nullptr;
     Graph<T>*                    Data         = nullptr;
     int                          size         = 0;
-
-    struct RouteInfo {
-        std::vector<T> route {};
-        int            transfer_time = 0;
-
-        RouteInfo() = default;
-    };
-    std::vector<RouteInfo> available_route {};
-    std::vector<RouteInfo> best_route {};
-
-    void get_available_route() {
-        // TODO(eden):
-    }
-    void get_best_route() {
-        // 0. special case
-        if (available_route.empty()) {
-            return;
-        }
-        // 1. sort
-        std::sort(
-            available_route.begin(),
-            available_route.end(),
-            [](const RouteInfo& lhs, const RouteInfo& rhs) {
-                return lhs.route.size() < rhs.route.size();
-            }
-        );
-        // 2. select the min only
-        best_route       = available_route;
-        int  min_dist    = best_route.front().route.size();
-        auto delete_from = std::find_if(
-            best_route.begin(),
-            best_route.end(),
-            [&min_dist](const RouteInfo& curr) {
-                return curr.route.size() > min_dist;
-            }
-        );
-        best_route.erase(delete_from, best_route.end());
-    }
 
     void show_min_transfer_time(const T& source, const T& end) {
         std::cout << "{ " << source << " -> " << end << " } min transfer time is => ";
@@ -94,6 +58,31 @@ class MinTransfer {
         std::cout << std::endl;
     }
 
+    void show_detailed_info(const T& source, const T& end) {
+        using Resource::GraphPool;
+
+        std::list<T> all_critical
+            = DijkstraAlgo->return_shortest_route_between(
+                source,
+                end
+            );
+
+        std::cout << "Here's the detailed route : " << std::endl;
+
+        auto iter  = all_critical.begin();
+        auto final = std::prev(all_critical.end());
+
+        while (iter != final) {
+            T&                    curr = *iter;
+            T&                    next = *(std::next(iter));
+            Dijkstra<std::string> temp(*GraphPool<std::string>::getOriginal());
+            temp.tiny_query(curr, next);
+            iter = std::next(iter);
+        }
+
+        std::cout << std::endl;
+    }
+
 public:
     explicit MinTransfer(Utility::Graph<T>& graph)
         : Data(&graph)
@@ -112,6 +101,8 @@ public:
         // 2. show some info
         show_min_transfer_time(source, end);
         show_min_transfer_stations(source, end);
+        // 3. show detailed info
+        show_detailed_info(source, end); // BUG
     }
 };
 

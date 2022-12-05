@@ -35,6 +35,8 @@ namespace Utility {
 
 template <typename T>
 class Dijkstra {
+    static constexpr int VEX_PER_LINE = 5;
+
     friend class MinTransfer<T>;
 
     Graph<T>* Data       = nullptr;
@@ -278,21 +280,54 @@ public:
         std::cout << std::endl;
     }
     void show_min_route_between(const T& source, const T& end) {
-        std::cout << "{ " << source << " -> " << end << " } shortest route is => ";
+        std::cout << "{ " << source << " -> " << end << " } shortest route is : ";
+        std::cout << std::endl;
 
         int source_idx = Data->V_Index_Map[source];
         int end_idx    = Data->V_Index_Map[end];
 
+        int idx = 0;
         for (auto&& curr : MinRoute[end]) {
+            if (idx % VEX_PER_LINE == 0) {
+                std::cout << std::endl
+                          << "\t";
+            }
             std::cout << curr << " ";
+            ++idx;
         }
         std::cout << std::endl;
+        std::cout << std::endl;
+    }
+    void show_basic_info_between(const T& source, const T& end) {
+        int source_idx = Data->V_Index_Map[source];
+        int end_idx    = Data->V_Index_Map[end];
+
+        int idx = 0;
+        for (auto&& curr : MinRoute[end]) {
+            if (idx % VEX_PER_LINE == 0) {
+                std::cout << std::endl
+                          << "\t";
+            }
+            std::cout << curr << " ";
+            ++idx;
+        }
+        std::cout << "( dist = " << Dist[end_idx] << " )";
         std::cout << std::endl;
     }
     void query(const T& source, const T& end) {
         execute_algorithm_from(source);
         show_min_dist_between(source, end);
         show_min_route_between(source, end);
+    }
+    void tiny_query(const T& source, const T& end) {
+        execute_algorithm_from(source);
+        show_basic_info_between(source, end);
+    }
+    std::list<T> return_shortest_route_between(
+        const T& source,
+        const T& end
+    ) {
+        return MinRoute[end];
     }
 };
 
