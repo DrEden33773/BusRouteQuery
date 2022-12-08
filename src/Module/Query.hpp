@@ -16,6 +16,7 @@
 #include "../Utility/FileManager.hpp"
 #include "../Utility/Graph.hpp"
 
+#include <cstdlib>
 #include <filesystem>
 #include <iostream>
 #include <stdexcept>
@@ -34,8 +35,13 @@ class Querier {
         using std::string;
         while (true) {
             std::cout << "Please input the `source` and `end` station..." << std::endl;
+            std::cout << "(Input `exit` to exit)" << std::endl;
             std::cout << ">>> ";
-            std::cin >> source >> end;
+            std::cin >> source;
+            if (source == "exit") {
+                exit(0);
+            }
+            std::cin >> end;
             std::cout << std::endl;
             if (GraphPool<string>::getOriginal()->if_has_vex(source)
                 && GraphPool<string>::getOriginal()->if_has_vex(end)) {
@@ -56,14 +62,16 @@ class Querier {
             ->query(source, end); // SUCCESS!
 
         AlgorithmPool<std::string>::getMinTransfer()
-            ->query(source, end); // TOO SLOW!
+            ->query(source, end); // OK!
     }
 
 public:
     static void Query() {
         Querier query_process;
-        query_process.input();
-        query_process.query();
+        while (true) {
+            query_process.input();
+            query_process.query();
+        }
     }
 };
 

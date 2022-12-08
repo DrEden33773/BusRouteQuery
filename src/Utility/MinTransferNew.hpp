@@ -38,6 +38,7 @@ class MinTransfer {
     std::unique_ptr<Dijkstra<T>> DijkstraAlgo = nullptr;
     Graph<T>*                    Data         = nullptr;
     int                          size         = 0;
+    T                            source {};
 
     void show_min_transfer_time(const T& source, const T& end) {
         std::cout << "{ " << source << " -> " << end << " } min transfer time is => ";
@@ -88,7 +89,7 @@ private:
 
 private:
     std::list<T> give_best_sub_route_between(
-        const T& source, const T& end
+        const T& source, const T& end, T& out_category
     ) {
         using Resource::Category_Vex_Map;
         using Resource::Category_VexSet_Map;
@@ -142,21 +143,32 @@ private:
             all_route.push_back(an_route);
         }
 
-        // 3. find the min_route
-        auto min_route_iter = all_route.begin();
-        auto curr           = all_route.begin();
-        auto ed             = all_route.end();
-        while (curr != ed) {
-            if (curr->size() < min_route_iter->size()) {
-                min_route_iter = curr;
+        // 3. find the min_route along with it's category
+        auto min_route_iter    = all_route.begin();
+        auto curr_route        = all_route.begin();
+        auto ed_route          = all_route.end();
+        auto min_category_iter = all_common_category.begin();
+        auto curr_category     = all_common_category.begin();
+        auto end_category      = all_common_category.begin();
+        while (curr_route != ed_route
+               && curr_category != end_category) {
+            if (curr_route->size() < min_route_iter->size()) {
+                min_route_iter    = curr_route;
+                min_category_iter = curr_category;
             }
-            curr = std::next(curr);
+            curr_route    = std::next(curr_route);
+            curr_category = std::next(curr_category);
         }
 
         // 4. export the min_route
+        out_category = *min_category_iter;
         return *min_route_iter;
     }
-    void print_list_fmt(const std::list<T>& list) {
+    void print_list_fmt(const std::list<T>& list, T category = {}) {
+        if (category != T {}) {
+            std::cout << category << " : ";
+        }
+
         int dist = list.size() - 1;
         int idx  = 0;
         for (auto&& vex : list) {
@@ -172,6 +184,7 @@ private:
     }
     void give_detailed_info(const T& source, const T& end) {
         std::cout << "Here's the detailed route : " << std::endl;
+        std::cout << std::endl;
         std::list<T> all_critical
             = DijkstraAlgo->return_shortest_route_between(
                 source,
@@ -180,14 +193,17 @@ private:
         auto iter  = all_critical.begin();
         auto final = std::prev(all_critical.end());
         while (iter != final) {
-            T&   curr           = *iter;
-            T&   next           = *(std::next(iter));
+            T&   curr = *iter;
+            T&   next = *(std::next(iter));
+            T    best_category {};
             auto best_sub_route = give_best_sub_route_between(
                 curr,
-                next
+                next,
+                best_category
             );
             print_list_fmt(
-                best_sub_route
+                best_sub_route,
+                best_category
             );
             iter = std::next(iter);
         }
@@ -207,8 +223,11 @@ public:
 
 public:
     void query(const T& source, const T& end) {
-        // 1. do basic query
-        DijkstraAlgo->execute_algorithm_from(source);
+        if (this->source != source) {
+            this->source = source;
+            DijkstraAlgo->reset_algorithm();
+            DijkstraAlgo->execute_algorithm_from(source);
+        }
         // 2. show some info
         show_min_transfer_time(source, end);
         show_min_transfer_stations(source, end);

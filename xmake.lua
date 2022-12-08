@@ -5,6 +5,9 @@ target("BusRouteQuery")
     add_files("src/*.cpp")
     set_languages("c17", "c++20")
     add_cxflags("-fconcepts-diagnostics-depth=4")
+    if is_mode("release") then 
+        set_optimize("faster")
+    end
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io

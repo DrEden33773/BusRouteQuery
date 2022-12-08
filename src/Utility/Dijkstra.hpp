@@ -159,9 +159,18 @@ class Dijkstra {
         }
     }
 
+    /* clear `MinRoute` and `NoRouteIdx` */
+    void reset_algorithm() {
+        MinRoute.clear();
+        for (int idx = 0; idx < Data->size; ++idx) {
+            T vex = Data->Index_V_Map[idx];
+            MinRoute.insert(std::make_pair(vex, std::list<T>()));
+        }
+        NoRouteIdx.clear();
+    }
+
 public:
-    static Dijkstra<T>
-    init(Utility::Graph<T>& graph) {
+    static Dijkstra<T> init(Utility::Graph<T>& graph) {
         Dijkstra<T> ret;
         ret.Data = &graph;
         ret.size = graph.size;
@@ -315,12 +324,18 @@ public:
         std::cout << std::endl;
     }
     void query(const T& source, const T& end) {
-        execute_algorithm_from(source);
+        if (this->source != source) {
+            reset_algorithm();
+            execute_algorithm_from(source);
+        }
         show_min_dist_between(source, end);
         show_min_route_between(source, end);
     }
     void tiny_query(const T& source, const T& end) {
-        execute_algorithm_from(source);
+        if (this->source != source) {
+            reset_algorithm();
+            execute_algorithm_from(source);
+        }
         show_basic_info_between(source, end);
     }
     std::list<T> return_shortest_route_between(
