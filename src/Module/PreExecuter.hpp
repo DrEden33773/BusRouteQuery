@@ -32,13 +32,7 @@ class PreExecuter {
                   << std::endl;
     }
     void execute_Dijkstra() {
-        std::cout << "Now, execute `Dijkstra Algorithm Plus` for later query...";
-        std::cout << std::endl
-                  << std::endl;
-
-        Resource::AlgorithmPool<std::string>::getDijkstra()->execute_algorithm();
-
-        std::cout << "Done!";
+        std::cout << "Dijkstra Algorithm Plus has been discarded, request has been ignored...";
         std::cout << std::endl
                   << std::endl;
     }
