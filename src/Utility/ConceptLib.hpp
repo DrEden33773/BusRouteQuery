@@ -25,7 +25,7 @@ concept StdOut = requires(T a, std::ostream& b) {
 };
 
 template <class T>
-concept StdIn = requires(T a, std::ostream& b) {
+concept StdIn = requires(T a, std::istream& b) {
     { b >> a };
 };
 
