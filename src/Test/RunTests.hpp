@@ -15,7 +15,6 @@
 #include "InitializerTest.hpp"
 #include "PtrObjAllocMemTest.hpp"
 #include "StaticMemberTest.hpp"
-#include "WeakPtrTest.hpp"
 
 #include <functional>
 #include <iostream>
@@ -24,7 +23,6 @@
 namespace Test {
 
 static const std::vector<std::function<void()>> AllTest {
-    // WeakPtrTest,
     // StaticMemberTest,
     // ChineseCharTest,
     // PtrObjAllocMemTest,
